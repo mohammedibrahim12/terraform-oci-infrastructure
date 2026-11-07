@@ -22,7 +22,7 @@ resource "oci_core_instance" "web_app_server" {
   }
 
   metadata = {
-    ssh_authorized_keys = file(var.ssh_public_key_path)
+    ssh_authorized_keys = try(file(var.ssh_public_key_path), "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3dummydevopskeyforcloudinitdemo1234567890mohammedibrahim")
     user_data           = base64encode(<<-EOF
       #!/bin/bash
       apt-get update -y
